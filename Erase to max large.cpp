@@ -21,7 +21,7 @@ int main() {
         int N;
         cin >> N;
         int Arr[1000000]={0};
-        int maxnr=0;
+        int maxnr=0, minnr=-1;
         int x;
         long long int sum=0;
         for(int i_Arr=0; i_Arr<N; i_Arr++)
@@ -30,10 +30,13 @@ int main() {
             Arr[x]++;
             sum+=x;
             maxnr=max(maxnr, x);
+	    if(minnr<0)
+                minnr=x;
+            else minnr=min(minnr, x);
         }
 
         long long out_=0;
-        for(int i =0; i<=maxnr;i++)
+        for(int i =minnr; i<=maxnr;i++)
             if(Arr[i]>0)
                 out_=max(out_,sum-(Arr[i]*i));
 
